@@ -1,10 +1,9 @@
-# All rights reserved - Amir Sillam - October 2022
+#### All rights reserved - Amir Sillam - October 2022
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from termcolor import colored
-import matplotlib.pyplot as plt
-
 
 def plot_painting_data(upd_data):
     """ Create diagram of painting and creativity and visualize it. """
@@ -73,6 +72,8 @@ def check_corr(data_frame):
     print(check_corr.__doc__)
     print("------------------------------------------------------\n")
 
+    #heat_map = sns.heatmap(correlated_data)
+    #print(heat_map)
     return colored(f"{correlated_data.to_string()}", 'blue')
 
 
