@@ -1,9 +1,12 @@
-#### All rights reserved - Amir Sillam - October 2022
+# All rights reserved - Amir Sillam - October - November 2022
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from termcolor import colored
+import seaborn as sns
+%matplotlib inline
+
 
 def plot_painting_data(upd_data):
     """ Create diagram of painting and creativity and visualize it. """
@@ -64,6 +67,17 @@ def puzzle_patience_corr(data_frame):
                       f"\nTherefore the correlation is Strong.", 'blue'))
 
 
+def heat_map(df):
+    """ Show heat map based off correlated data frame. """
+
+    print("---------------------------------------------------")
+    print(heat_map.__doc__)
+    print("---------------------------------------------------")
+    sns.heatmap(df.corr(), cmap='coolwarm', annot=True)
+    plt.show()
+
+
+
 def check_corr(data_frame):
     """ Getting data frame and printing all of its correlation ."""
 
@@ -72,8 +86,6 @@ def check_corr(data_frame):
     print(check_corr.__doc__)
     print("------------------------------------------------------\n")
 
-    #heat_map = sns.heatmap(correlated_data)
-    #print(heat_map)
     return colored(f"{correlated_data.to_string()}", 'blue')
 
 
@@ -96,15 +108,18 @@ def user_input(menu_option, data_frame):
         print(check_corr(data_frame))
 
     elif menu_option == '3':
-        puzzle_patience_corr(data_frame)
+        heat_map(data_frame)
 
     elif menu_option == '4':
-        painting_creativity_corr(data_frame)
+        puzzle_patience_corr(data_frame)
 
     elif menu_option == '5':
-        plot_puzzle_data(data_frame)
+        painting_creativity_corr(data_frame)
 
     elif menu_option == '6':
+        plot_puzzle_data(data_frame)
+
+    elif menu_option == '7':
         plot_painting_data(data_frame)
 
     else:
@@ -115,7 +130,7 @@ def user_input(menu_option, data_frame):
 def menu_input(data_frame):
     """ User menu input."""
 
-    input_options = ['1', '2', '3', '4', '5', '6', '7']
+    input_options = ['1', '2', '3', '4', '5', '6', '7' , '8']
 
     menu_option = input(colored("\nYour input: ",
                                 'green'))
@@ -137,15 +152,16 @@ def menu_print(upd_data):
     print("-------------------------------------------- ")
     print("Please Choose an option from the menu below:")
     print("-------------------------------------------- ")
-    print(colored("------------------------------------------------------- \n"
-                  "| 1.Show Collected Data frame.                        |\n"
-                  "| 2.Show all Data frame correlation.                  | \n"
-                  "| 3.Show correlation between Puzzle and Patience      | \n"
-                  "| 4.Show correlation between Painting and Creativity. | \n"
-                  "| 5.Show plot of Puzzle.                              | \n"
-                  "| 6.Show plot of Painting.                            |\n"
-                  "| 7.End program.                                      |\n"
-                  "-------------------------------------------------------", 'green'))
+    print(colored("------------------------------------------------------ \n"
+                  "| 1.Show Collected Data frame.                       |\n"
+                  "| 2.Show all Data frame correlation.                 | \n"
+                  "| 3.Show heat map based off correlated data frame.   | \n"
+                  "| 4.Show correlation between Puzzle and Patience.    | \n"
+                  "| 5.Show correlation between Painting and Creativity.| \n"
+                  "| 6.Show plot of Puzzle.                             | \n"
+                  "| 7.Show plot of Painting.                           |\n"
+                  "| 8.End program.                                     |\n"
+                  "------------------------------------------------------", 'green'))
     menu_input(upd_data)
 
 
